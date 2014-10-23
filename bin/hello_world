@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# hello_world startup script
+#
+
+python -m hello_world $@
