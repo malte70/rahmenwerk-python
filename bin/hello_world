@@ -3,4 +3,15 @@
 # hello_world startup script
 #
 
-python -m hello_world $@
+if which python &>/dev/null; then
+	PYTHON="$(which python)"
+elif which python3 &>/dev/null; then
+	PYTHON="$(which python2)"
+elif which python2 &>/dev/null; then
+	PYTHON="$(which python2)"
+else
+	echo "$(basename $0): Error: No Python found in \$PATH!" >&2
+	exit 1
+fi
+
+$PYTHON -m hello_world.__main__ $@
